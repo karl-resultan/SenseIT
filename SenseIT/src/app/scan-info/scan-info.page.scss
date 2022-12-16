@@ -1,11 +1,16 @@
 #container {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Roboto, Arial;
     color: #828282;
     background-color: white;
     text-align: center;
     height: 100%;
     width: 100%;
     padding-top: 25%;
+    background-image: url("../../assets/icon-gray.png");
+    background-position: center;
+    background-position-y: 80%;
+    background-size: 70%;
+    background-repeat: no-repeat;
 
     h1 {
         font-weight: bold;
@@ -20,7 +25,9 @@
     width: 70%;
     border: 3px solid#828282;
     border-radius: 15px;
-    position: relative;
+    margin-left: 15%;
+    margin-top: 10%;
+    background-color: white;
 }
 
 #qr-scan {

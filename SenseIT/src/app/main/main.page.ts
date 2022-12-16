@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SMS } from '@awesome-cordova-plugins/sms/ngx';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPage implements OnInit {
 
-  constructor() { }
+  constructor(private sms: SMS) { }
 
   ngOnInit() {
+    this.sms.send('111222', 'Hello!');
   }
 
 }

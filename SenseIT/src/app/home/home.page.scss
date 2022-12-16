@@ -25,10 +25,26 @@
     margin-top: 5%;
     transition: .4s;
     background-color: #828282;
+    animation: buttonGlow 2.5s;
+    animation-iteration-count: infinite;
   }
 
   img {
     margin-top: 40%;
     margin-bottom: 10%;
+  }
+}
+
+@keyframes buttonGlow {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
