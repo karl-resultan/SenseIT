@@ -1,0 +1,7 @@
+{
+  "name": "SenseIT",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
