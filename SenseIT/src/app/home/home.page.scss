@@ -1,5 +1,5 @@
 #container {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, Arial;
   color: white;
   text-align: center;
   background-color: #FC9F57;
@@ -25,5 +25,9 @@
     margin-top: 5%;
     transition: .4s;
     background-color: #828282;
+  }
+
+  img {
+    margin-top: 30%;
   }
 }
