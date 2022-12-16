@@ -1,0 +1,29 @@
+#container {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  text-align: center;
+  background-color: #FC9F57;
+  height: 100%;
+  width: 100%;
+
+  h1, h3 {
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 30pt;
+  }
+
+  h3 {
+    font-size: 14pt;
+  }
+
+  button {
+    height: 5%;
+    width: 35%;
+    border-radius: 15px;
+    margin-top: 5%;
+    transition: .4s;
+    background-color: #828282;
+  }
+}
