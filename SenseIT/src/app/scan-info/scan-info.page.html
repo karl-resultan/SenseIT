@@ -1,12 +1,7 @@
 <div id="container">
   <h1>SenseIT</h1>
 
-  <h5>ENTER DEVICE INFO</h5>
 
-  <div style="display: block">
-    <input [(ngModel)]="contact" type="text" placeholder="Enter device number..." maxlength="11">
-    <input [(ngModel)]="pin" placeholder="Enter PIN..." type="text" maxlength="4">
-  </div>
-
-  <ion-button id="qr-scan" (click)="submitInfo()">CONFIRM</ion-button>
+  <h3>PRESS THE BUTTON TO START SCANNING FOR QR</h3>
+  <ion-button id="qr-scan" (click)="scan()">SCAN</ion-button>
 </div>

@@ -5,9 +5,6 @@ project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/
 include ':byteowls-capacitor-sms'
 project(':byteowls-capacitor-sms').projectDir = new File('../node_modules/@byteowls/capacitor-sms/android')
 
-include ':capacitor-community-barcode-scanner'
-project(':capacitor-community-barcode-scanner').projectDir = new File('../node_modules/@capacitor-community/barcode-scanner/android')
-
 include ':capacitor-app'
 project(':capacitor-app').projectDir = new File('../node_modules/@capacitor/app/android')
 
