@@ -11,8 +11,8 @@ export class InfoService {
 
   constructor(private route: Router) { }
 
-  addDevice(number: string, pin: string){
-    let newDev = new DeviceModel(this.data, this.data);
+  addDevice(name: string, number: string, pin: string){
+    let newDev = new DeviceModel(name, number, pin);
     this.device_list.push(newDev);
     this.route.navigate(['/main']);
   }

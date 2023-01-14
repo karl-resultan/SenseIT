@@ -9,6 +9,7 @@
 
   <div id="devices">
     <div *ngFor="let device of device_list" class="device">
+      <p>Device Name: {{ device.device_name }}</p>
       <p>Contact: {{ device.device_contact }}</p>
       <p>PIN: {{ device.device_pin}}</p>
       <ion-button (click)="sendSms(device.device_contact, device.device_pin)">Pair Device</ion-button>

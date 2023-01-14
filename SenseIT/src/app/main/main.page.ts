@@ -15,8 +15,7 @@ export class MainPage implements OnInit {
 
   ngOnInit() {
     this.device_list = this.info.device_list;
-    let sample = new DeviceModel('09427484468', '1234');
-
+    let sample = new DeviceModel('Sample Device', '09427484468', '1234');
     this.device_list.push(sample);
   }
 
