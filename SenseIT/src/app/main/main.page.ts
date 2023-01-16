@@ -14,6 +14,16 @@ export class MainPage implements OnInit {
   constructor(public info: InfoService) { }
 
   ngOnInit() {
+    const devs: Device[] = [];
+    const sample: Device = {
+      device_name: 'SenseIT',
+      device_contact: '09812442004',
+      device_pin: '12345678'
+    }
+
+    devs.push(sample);
+
+    localStorage.setItem("device_list", JSON.stringify(devs));
     this.device_list = this.getDeviceList();
   }
 

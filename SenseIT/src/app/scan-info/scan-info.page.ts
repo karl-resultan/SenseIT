@@ -44,17 +44,21 @@ export class ScanInfoPage {
 
         this.qrScan = this.qr.scan().subscribe((text: string) => {
           document.getElementsByTagName('body')[0].style.opacity = "1";
-          this.qrScan.unsubscribe();
-          this.qr.hide();
 
           let device: Device = JSON.parse(text);
 
           if (this.sendSms(device.device_contact, device.device_pin)) {
             this.info.addDevice(device);
+            alert("The command has been sent.")
           }else{
             alert("Something went wrong while sending the command. Please make sure that your device has sufficient load balance or is connected to your cellular network. ")
             return;
           }
+
+          this.qrScan.unsubscribe();
+          this.qr.hide();
+
+          
         });
       }
       else if (status.denied) {
