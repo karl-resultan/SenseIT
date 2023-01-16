@@ -1,7 +1,7 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import { SmsManager } from "@byteowls/capacitor-sms";
-import { DeviceModel } from "./device.model";
 import {InfoService} from "../scan-info/info.service";
+import { Device } from './device.interface';
 
 @Component({
   selector: 'app-main',
@@ -9,14 +9,20 @@ import {InfoService} from "../scan-info/info.service";
   styleUrls: ['./main.page.scss']
 })
 export class MainPage implements OnInit {
-  device_list: DeviceModel[] = [];
+  device_list: Device[] = [];
 
   constructor(public info: InfoService) { }
 
   ngOnInit() {
-    this.device_list = this.info.device_list;
-    let sample = new DeviceModel('Sample Device', '09427484468', '1234');
-    this.device_list.push(sample);
+    this.device_list = this.getDeviceList();
+  }
+
+  getDeviceList(): Device[]{
+    let devices :Device[] = []
+    if(localStorage.getItem('device_list')){
+      devices = JSON.parse(<string>localStorage.getItem("device_list"))
+    }
+    return devices;
   }
 
   sendSms(contact: string, pin: string) {
@@ -26,7 +32,7 @@ export class MainPage implements OnInit {
       numbers: numbers,
       text: pin,
     }).then(() => {
-      console.log('success');
+      return "success";
     }).catch(error => {
       console.error(error);
     });

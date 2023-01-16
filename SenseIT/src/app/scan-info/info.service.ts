@@ -1,19 +1,35 @@
 import { Injectable } from '@angular/core';
-import {DeviceModel} from "../main/device.model";
 import {Router} from "@angular/router";
+import { Device } from '../main/device.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InfoService {
   data: string = "";
-  device_list: DeviceModel[] = [];
+  device_list: Device[] = [];
 
   constructor(private route: Router) { }
 
-  addDevice(name: string, number: string, pin: string){
-    let newDev = new DeviceModel(name, number, pin);
-    this.device_list.push(newDev);
+  getDeviceList(): Device[]{
+    let devices :Device[] = []
+    if(localStorage.getItem('device_list')){
+      devices = JSON.parse(<string>localStorage.getItem("device_list"))
+    }
+    return devices;
+  }
+
+  appendDevice(device: Device){
+
+    const devices: Device[] = this.getDeviceList();
+    devices.push(device);
+
+    localStorage.setItem("device_list", JSON.stringify(devices))
+  }
+
+  addDevice(device: Device){
+    this.appendDevice(device)
+    this.device_list.push(device);
     this.route.navigate(['/main']);
   }
 }
