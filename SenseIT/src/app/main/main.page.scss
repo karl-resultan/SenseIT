@@ -67,9 +67,11 @@
   border-radius: 15px;
   padding: 5%;
   background-color: white;
-
-  button {
-    height: 20%;
-    width: 20%;
+  
+  .reset{
+    width: 100%;
+  }
+  .remove{
+    width: 100%;
   }
 }

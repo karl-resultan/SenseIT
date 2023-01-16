@@ -35,6 +35,34 @@ export class MainPage implements OnInit {
     return devices;
   }
 
+  resetDevice(contact: string){
+    console.log(contact.substring(2, 10));
+    const numbers: string[] = [`${contact}`];
+    SmsManager.send({
+      numbers: numbers,
+      text: "RESET",
+    }).then(() => {
+      alert('The command was sent successfully.');
+    }).catch(error => {
+      console.error(error);
+    });
+  }
+
+  removeDevice(contact: string){
+    console.log(contact.substring(2, 10));
+    const numbers: string[] = [`${contact}`];
+    SmsManager.send({
+      numbers: numbers,
+      text: "REMOVE",
+    }).then(() => {
+      alert('The command was sent successfully.');
+      localStorage.removeItem("device_list");
+    }).catch(error => {
+      console.error(error);
+    });
+  }
+
+
   sendSms(contact: string, pin: string) {
     console.log(contact.substring(2, 10));
     const numbers: string[] = [`${contact}`];

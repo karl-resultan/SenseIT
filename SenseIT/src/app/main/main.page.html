@@ -12,7 +12,8 @@
       <p>Device Name: {{ device.device_name }}</p>
       <p>Contact: {{ device.device_contact }}</p>
       <p>PIN: {{ device.device_pin}}</p>
-      <ion-button (click)="sendSms(device.device_contact, device.device_pin)">Pair Device</ion-button>
+      <ion-button class="reset" (click)="resetDevice(device.device_contact)">Reset Device</ion-button>
+      <ion-button class="remove" (click)="removeDevice(device.device_contact)">Remove Device</ion-button>
     </div>
   </div>
 </div>

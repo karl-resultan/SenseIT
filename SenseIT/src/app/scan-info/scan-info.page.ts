@@ -16,7 +16,7 @@ export class ScanInfoPage {
   constructor(public info: InfoService, private qr: QRScanner) {
   }
 
-  sendSms(contact: string, pin: string): boolean {
+  sendSms(contact: string, pin: string, device: Device): boolean {
     let result = false;
 
     console.log(contact.substring(2, 10));
@@ -27,9 +27,10 @@ export class ScanInfoPage {
       numbers: numbers,
       text: pin,
     }).then(() => {
-      result = true;
+      alert("The command has been sent.");
+      this.info.addDevice(device);
     }).catch(error => {
-      result = false;
+      alert("Something went wrong while sending the command. Please make sure that your device has sufficient load balance or is connected to your cellular network. ");
     });
 
     return result;
@@ -47,18 +48,11 @@ export class ScanInfoPage {
 
           let device: Device = JSON.parse(text);
 
-          if (this.sendSms(device.device_contact, device.device_pin)) {
-            this.info.addDevice(device);
-            alert("The command has been sent.")
-          }else{
-            alert("Something went wrong while sending the command. Please make sure that your device has sufficient load balance or is connected to your cellular network. ")
-            return;
-          }
+          this.sendSms(device.device_contact, device.device_pin, device)
 
           this.qrScan.unsubscribe();
           this.qr.hide();
 
-          
         });
       }
       else if (status.denied) {
