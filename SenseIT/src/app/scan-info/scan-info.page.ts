@@ -3,17 +3,33 @@ import { InfoService } from "./info.service";
 import { QRScanner, QRScannerStatus } from "@ionic-native/qr-scanner/ngx";
 import { Device } from '../main/device.interface';
 import { SmsManager } from '@byteowls/capacitor-sms';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-scan-info',
   templateUrl: './scan-info.page.html',
   styleUrls: ['./scan-info.page.scss'],
 })
-export class ScanInfoPage {
+export class ScanInfoPage implements OnInit {
   data: string = "";
   qrScan: any;
+  
 
-  constructor(public info: InfoService, private qr: QRScanner) {
+
+  constructor(public info: InfoService, private qr: QRScanner, private route: Router) {
+  }
+  
+  ngOnInit(): void {
+    // const devs: Device[] = [];
+    // const sample: Device = {
+    //   device_name: 'SenseIT',
+    //   device_contact: '09812442004',
+    //   device_pin: '12345678'
+    // }
+
+    // this.info.addDevice(sample)
+
+    // localStorage.setItem("device_list", JSON.stringify(devs));
   }
 
   sendSms(contact: string, pin: string, device: Device): boolean {
@@ -29,6 +45,7 @@ export class ScanInfoPage {
     }).then(() => {
       alert("The command has been sent.");
       this.info.addDevice(device);
+      this.route.navigate(['/main']);
     }).catch(error => {
       alert("Something went wrong while sending the command. Please make sure that your device has sufficient load balance or is connected to your cellular network. ");
     });

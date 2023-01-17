@@ -36,6 +36,5 @@ export class InfoService {
   addDevice(device: Device) {
     this.appendDevice(device)
     this.device_list.push(device);
-    this.route.navigate(['/main']);
   }
 }

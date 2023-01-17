@@ -14,24 +14,26 @@ export class MainPage implements OnInit {
   constructor(public info: InfoService) { }
 
   ngOnInit() {
-    const devs: Device[] = [];
-    const sample: Device = {
-      device_name: 'SenseIT',
-      device_contact: '09812442004',
-      device_pin: '12345678'
-    }
+    // const devs: Device[] = [];
+    // const sample: Device = {
+    //   device_name: 'SenseIT',
+    //   device_contact: '09812442004',
+    //   device_pin: '12345678'
+    // }
 
-    devs.push(sample);
+    // devs.push(sample);
 
-    localStorage.setItem("device_list", JSON.stringify(devs));
+    // localStorage.setItem("device_list", JSON.stringify(devs));
     this.device_list = this.getDeviceList();
   }
 
   getDeviceList(): Device[]{
     let devices :Device[] = []
+
     if(localStorage.getItem('device_list')){
       devices = JSON.parse(<string>localStorage.getItem("device_list"))
     }
+
     return devices;
   }
 
@@ -49,14 +51,18 @@ export class MainPage implements OnInit {
   }
 
   removeDevice(contact: string){
+    localStorage.removeItem("device_list");
+    this.device_list = [];
+
     console.log(contact.substring(2, 10));
     const numbers: string[] = [`${contact}`];
     SmsManager.send({
       numbers: numbers,
       text: "REMOVE",
     }).then(() => {
-      alert('The command was sent successfully.');
       localStorage.removeItem("device_list");
+      this.device_list = [];
+      alert('The command was sent successfully.');
     }).catch(error => {
       console.error(error);
     });
