@@ -1,4 +1,5 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, EventEmitter, NgModule, OnInit, Output} from '@angular/core';
+import { Router } from '@angular/router';
 import { SmsManager } from "@byteowls/capacitor-sms";
 import {InfoService} from "../scan-info/info.service";
 import { Device } from './device.interface';
@@ -11,19 +12,21 @@ import { Device } from './device.interface';
 export class MainPage implements OnInit {
   device_list: Device[] = [];
 
-  constructor(public info: InfoService) { }
+  constructor(public info: InfoService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+   }
+
+  reloadParent(){
+    this.device_list = this.getDeviceList();
+  }
 
   ngOnInit() {
-    // const devs: Device[] = [];
-    // const sample: Device = {
-    //   device_name: 'SenseIT',
-    //   device_contact: '09812442004',
-    //   device_pin: '12345678'
-    // }
+    this.device_list = this.getDeviceList();
+  }
 
-    // devs.push(sample);
-
-    // localStorage.setItem("device_list", JSON.stringify(devs));
+  public reloadDevices(){
     this.device_list = this.getDeviceList();
   }
 
@@ -48,6 +51,10 @@ export class MainPage implements OnInit {
     }).catch(error => {
       console.error(error);
     });
+  }
+
+  openScanner(){
+    this.router.navigateByUrl('/scan-info');
   }
 
   removeDevice(contact: string){
